@@ -11,7 +11,7 @@
 }
 
 .button.blue{
-    background-color: pink;
+    background-color: #FF007F;
 }
 
 button.green{
@@ -19,7 +19,7 @@ button.green{
 }
 
 button.red{
-    background-color: #FF4949;
+    background-color: #FF0000;
 }
 
 .button:hover{
