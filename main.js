@@ -1,11 +1,16 @@
-const openModal = () => document.getElementById('modal')
-    .classList.add('active')
+'use strict'
+
+const openModal = () => document.getElementById('modal').classList.add('active')
+const openModal2 = () => document.getElementById('modal2').classList.add('active')
+
+const closeModal2 = () => {
+    document.getElementById('modal2').classList.remove('active')
+}
 
 const closeModal = () => {
     clearFields()
     document.getElementById('modal').classList.remove('active')
 }
-
 
 const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
 const setLocalStorage = (dbClient) => localStorage.setItem("db_client", JSON.stringify(dbClient))
@@ -41,10 +46,10 @@ const clearFields = () => {
     const fields = document.querySelectorAll('.modal-field')
     fields.forEach(field => field.value = "")
     document.getElementById('nome').dataset.index = 'new'
-    document.querySelector(".modal-header>h2").textContent  = 'Novo Cliente'
 }
 
 const saveClient = () => {
+    debugger
     if (isValidFields()) {
         const client = {
             nome: document.getElementById('nome').value,
@@ -103,7 +108,6 @@ const editClient = (index) => {
     const client = readClient()[index]
     client.index = index
     fillFields(client)
-    document.querySelector(".modal-header>h2").textContent  = `Editando ${client.nome}`
     openModal()
 }
 
@@ -116,11 +120,17 @@ const editDelete = (event) => {
             editClient(index)
         } else {
             const client = readClient()[index]
-            const response = confirm(`Deseja realmente excluir o cliente ${client.nome}`)
-            if (response) {
+            let avisoDelete = document.querySelector('#avisoDelete')
+
+            avisoDelete.textContent = `Deseja realmente excluir o cliente ${client.nome}`
+            openModal2()
+
+        // APAGAR O REGISTRO
+            document.getElementById('apagar').addEventListener('click', () => {
                 deleteClient(index)
                 updateTable()
-            }
+                closeModal2()
+            })
         }
     }
 }
@@ -134,6 +144,10 @@ document.getElementById('cadastrarCliente')
 document.getElementById('modalClose')
     .addEventListener('click', closeModal)
 
+// modal apagar
+document.getElementById('modalClose2')
+    .addEventListener('click', closeModal2)
+
 document.getElementById('salvar')
     .addEventListener('click', saveClient)
 
@@ -142,3 +156,7 @@ document.querySelector('#tableClient>tbody')
 
 document.getElementById('cancelar')
     .addEventListener('click', closeModal)
+
+// modal apagar
+document.getElementById('cancelar2')
+    .addEventListener('click', closeModal2)
