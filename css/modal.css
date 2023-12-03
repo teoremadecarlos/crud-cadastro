@@ -7,6 +7,7 @@
     background: #00000090;
     opacity: 0;
     z-index: -1;
+    border-radius: 8px;
 }
 
 .modal.active{
@@ -23,6 +24,10 @@
     padding-bottom: 20px;
     background-color: white;
     box-shadow: 1px 1px 10px black;
+    border-radius: 5px;
+    position: fixed;
+    top: 10%;
+    left: 25%;
 }
 
 .modal-header{
@@ -32,9 +37,8 @@
     height: 40px;
     line-height: 40px;
     font-size: 1rem;
+    border-radius: 5px;
 }
-
-
 
 .modal-close{
     position: absolute;
@@ -45,6 +49,7 @@
     text-align: center;
     user-select: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .modal-close:hover{
@@ -75,7 +80,6 @@
     box-shadow: 0 0 3px var(--primary-color);
 }
 
-
 .modal-footer{
     background-color: inherit;
     text-align: right;
@@ -98,4 +102,8 @@
     .modal-field{
         width:100%;
     }
+}
+/* div com o texto de aviso do delete */
+.modal div {
+    margin-left: 1rem;
 }
