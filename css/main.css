@@ -22,7 +22,7 @@ body{
 }
 
 header{
-    background-color: var(--primary-color);
+    background-color: blue;
     color: var(--text-color);
     height: 70px;
     text-align: center;
